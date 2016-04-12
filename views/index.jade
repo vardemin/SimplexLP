@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .container
+    h1 Симлпекс метод ЛП
+    br
+    form(role='form', action="/", method="post", style='max-width: 300px;')
+      .form-group
+        select(size="2" id='typo' name="types" style="width: 300px;")
+          option(selected value='maximize') Максимизация
+          option(value='minimize') Минимизация
+      .form-group
+        input.form-control(type='text', name="task", placeholder='Целевая функция')
+      .form-group
+        input.form-control(type='text', name="limit", placeholder='Ограничение')
+      button.btn.btn-default(type='submit') Submit
+
+
+    button.btn.btn-default(onclick='Add()') Добивить ограничение
+    a(href='/')
+      button.btn.btn-primary(type="button") Cancel
+  script(type='text/javascript').
+    function Add() {
+      form = document.body.getElementsByTagName('form')[0];
+      div = document.createElement('div');
+      div.className = 'form-group';
+      div.innerHTML = "<input class='form-control' type='text', name='limit', placeholder='Ограничение')>";
+      form.insertBefore(div, form.lastChild);
+    }
